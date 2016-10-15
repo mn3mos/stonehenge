@@ -5,32 +5,36 @@ open Core_extended
 open Core.Std (* For In_channel *)
 
 (* Manual creation of a model*)
-let manual_model : d_model = (
-  ("MData", [
+let manual_model : d_model =
+{
+  data =
+  [
       Alias("myInt", Prim INT32);
       Struct("myStruct", [
           "f1_aliased",   TypeRef "myInt";
           "f2_unaliased", Prim INT32
         ])
-    ])
-, ("MContracts", [
+  ];
+  contracts =
+  [
     "MyInterface", [
       "m1", Prim VOID, [];
       "m2", TypeRef "myInt", ["param1", IN, TypeRef "myStruct"]
     ]
-  ])
-, ("MComponents", [
+  ];
+  components =
+  [
     "Cmp1", [], [];
     "Cmp2", [], []
-  ])
-, ("MDeployment", (
-    [
-      CmpRef "Cmp1"; CmpRef "Cmp2"
-    ],
-    [
-      (CmpRef "Cmp1", PortRef "pOut"), (CmpRef "Cmp2", PortRef "pIn")
-    ]))
-);;
+  ];
+  deployment =
+  [
+    CmpRef "Cmp1"; CmpRef "Cmp2"
+  ],
+  [
+    (CmpRef "Cmp1", PortRef "pOut"), (CmpRef "Cmp2", PortRef "pIn")
+  ]
+};;
 
 (* Parsing of a file*)
 let parse filename =

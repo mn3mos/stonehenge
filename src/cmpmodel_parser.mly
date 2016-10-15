@@ -12,23 +12,24 @@
 %%
 
 model_root:
-  | m = module_definition
-    { m }
+  | md = mod_data; mc = mod_contracts;
+    {
+      Some { Cmpmodel.empty with data = md; contracts = mc }
+    }
+  |
+    {
+      Some Cmpmodel.empty
+    }
   | EOF
-    { None }
-  ;
-
-module_definition:
-  | md = mod_data
-    { Some ( md, ("none", []), ("none", []), ("none", ([], [])) ) }
-  | mc = mod_contracts
-    { Some ( ("none", []), mc, ("none", []), ("none", ([], [])) ) }
+    {
+      None
+    }
   ;
 
 mod_data:
-  | MODULE_DATA; id = ID; LBRACE; RBRACE { (id, []) : Cmpmodel.d_dataModule }
+  | MODULE_DATA; LBRACE; RBRACE { ([]) : Cmpmodel.d_dataModule }
   ;
 
 mod_contracts:
-  | MODULE_CONTRACTS; id = ID; LBRACE; RBRACE { (id, []) : Cmpmodel.d_contractModule }
+  | MODULE_CONTRACTS; LBRACE; RBRACE { ([]) : Cmpmodel.d_contractModule }
   ;
