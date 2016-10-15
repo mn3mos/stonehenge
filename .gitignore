@@ -18,3 +18,9 @@ _build/
 # oasis generated files
 setup.data
 setup.log
+setup.ml
+Makefile
+configure
+myocamlbuild.ml
+INSTALL.txt
+README.txt
