@@ -1,0 +1,18 @@
+OASISFormat: 0.4
+Name:        prism
+Version:     0.1
+Synopsis:    A toy project for in-memory Query-enable stores
+Authors:     G.Pruvost
+License:     CeCILL-C
+Plugins:     META (0.4), StdFiles (0.4), DevFiles (0.4)
+
+Executable "prism"
+  Path:       src/
+  BuildTools: ocamlbuild
+  MainIs:     main.ml
+  CompiledObject: best
+  Install:    false
+  BuildDepends: sexplib, ppx_sexp_conv, core_extended, threads
+
+# Explicitely adding threads is required fore core_extended
+# (seems an Oasis bug: https://github.com/ocaml/oasis/pull/61)

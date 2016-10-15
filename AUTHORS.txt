@@ -1,0 +1,8 @@
+(* OASIS_START *)
+(* DO NOT EDIT (digest: d60c9bbc84120b26f375612ff9689768) *)
+
+Authors of prism:
+
+* G.Pruvost
+
+(* OASIS_STOP *)
