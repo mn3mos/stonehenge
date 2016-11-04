@@ -1,8 +1,17 @@
+
+
 data {
+  alias test
+}
+
+contracts {
 
 }
 
+components {
 
-contracts {
+}
+
+deployment {
 
 }
